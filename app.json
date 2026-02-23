@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "UsersDirectory",
-    "slug": "UsersDirectory",
+    "slug": "usersdirectory",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,7 +13,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rohini.h.usersdirectory",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -25,6 +29,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4bf3eeb6-6dc4-4a97-8d57-eb9a40a28567"
+      }
+    },
+    "owner": "rohini.h",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/4bf3eeb6-6dc4-4a97-8d57-eb9a40a28567"
     }
   }
 }
