@@ -17,7 +17,7 @@ module.exports = {
     },
     'ios.release': {
       type: 'ios.app',
-      binaryPath: 'usersdirectory.app',
+      binaryPath: 'UsersDirectory.app',
       build: 'eas build --local --profile development-detox --platform ios && tar -xvzf build-*.tar.gz && rm build-*.tar.gz'
     },
     'android.debug': {
