@@ -176,7 +176,6 @@ npx detox test -c ios.sim.release
 - Search filters users
 - Tapping a user navigates to the detail screen
 - Bounce avatar button is interactive
-- Detail screen scrolls to reveal all sections
 
 ---
 
