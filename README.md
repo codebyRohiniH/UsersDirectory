@@ -99,7 +99,7 @@ src/
 ### Install Dependencies
 
 ```bash
-npm install --legacy-peer-deps
+yarn install
 ```
 
 ### Run on iOS
