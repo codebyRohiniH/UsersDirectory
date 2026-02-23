@@ -1,14 +1,17 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
-import Animated, {
-    useAnimatedStyle,
-    useSharedValue, interpolate,
-    Extrapolation
-} from 'react-native-reanimated';
+import { useSharedValue } from "react-native-reanimated";
 import { useUsersStore } from '../store';
-import { Input, ListItem, Loading, ErrorState, EmptyState, theme } from '../ui';
+import {
+  Input,
+  ListItem,
+  Loading,
+  ErrorState,
+  EmptyState,
+} from "../components";
 import type { HomeScreenProps } from '../navigation';
 import type { User } from '../types';
+import { theme } from "../theme";
 
 const SEARCH_DEBOUNCE_MS = 400;
 
@@ -57,21 +60,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     clearSearch();
   }, [clearSearch]);
 
-  const searchBarStyle = useAnimatedStyle(() => {
-    const translateY = interpolate(
-      scrollY.value,
-      [0, 60],
-      [0, -60],
-      Extrapolation.CLAMP,
-    );
-    const opacity = interpolate(
-      scrollY.value,
-      [0, 60],
-      [1, 0],
-      Extrapolation.CLAMP,
-    );
-    return { transform: [{ translateY }], opacity };
-  });
 
   const renderItem = useCallback(
     ({ item }: { item: User }) => (
@@ -117,7 +105,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
 
   return (
     <View testID="home-screen" style={styles.container}>
-      <Animated.View style={[styles.searchContainer, searchBarStyle]}>
+      <View style={[styles.searchContainer]}>
         <Input
           testID="search-input"
           placeholder="Search users…"
@@ -129,7 +117,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
           autoCorrect={false}
           autoCapitalize="none"
         />
-      </Animated.View>
+      </View>
 
       <FlatList
         testID="users-list"

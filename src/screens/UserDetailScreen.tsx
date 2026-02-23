@@ -9,10 +9,18 @@ import Animated, {
     withSpring,
 } from 'react-native-reanimated';
 import { fetchUserById } from '../api';
-import { Avatar, Card, Text, Loading, ErrorState, Button, theme } from '../ui';
+import {
+  Avatar,
+  Card,
+  Text,
+  Loading,
+  ErrorState,
+  Button,
+  InfoRow,
+} from "../components";
 import type { UserDetailScreenProps } from '../navigation';
-import type { User } from '../types';
-import InfoRow from '../ui/InfoRow';
+import type { User } from "../types";
+import { theme } from "../theme";
 
 const HEADER_MAX_HEIGHT = 220;
 const HEADER_MIN_HEIGHT = 90;
@@ -173,7 +181,10 @@ export const UserDetailScreen: React.FC<UserDetailScreenProps> = ({ route }) => 
           <InfoRow label="Height" value={`${user.height} cm`} />
           <InfoRow label="Weight" value={`${user.weight} kg`} />
           <InfoRow label="Eye Color" value={user.eyeColor} />
-          <InfoRow label="Hair" value={`${user.hair.color}, ${user.hair.type}`} />
+          <InfoRow
+            label="Hair"
+            value={`${user.hair.color}, ${user.hair.type}`}
+          />
         </Card>
 
         {/* Address */}
@@ -183,7 +194,10 @@ export const UserDetailScreen: React.FC<UserDetailScreenProps> = ({ route }) => 
           </Text>
           <InfoRow label="Street" value={user.address.address} />
           <InfoRow label="City" value={user.address.city} />
-          <InfoRow label="State" value={`${user.address.state} (${user.address.stateCode})`} />
+          <InfoRow
+            label="State"
+            value={`${user.address.state} (${user.address.stateCode})`}
+          />
           <InfoRow label="Postal Code" value={user.address.postalCode} />
         </Card>
 
