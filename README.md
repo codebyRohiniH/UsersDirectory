@@ -149,17 +149,16 @@ npm run test:coverage
 
 The project uses **Detox** for end-to-end testing on iOS simulator. Builds are done via **EAS** cloud builds to avoid needing 15 GB+ local disk space.
 
-### 1. Build the `.app` via EAS (one-time, or when native code changes)
+### 1. Build the `.app` via EAS 
 
 ```bash
-eas build --profile development-detox --platform ios
+eas build -p ios --profile=development-detox --local
 ```
 
-### 2. Download & extract the archive
+### 2. Extract the .tar.gz file
 
 ```bash
-# Download the .tar.gz from the EAS build URL
-tar -xf <downloaded-archive>.tar.gz
+tar -xzf <your-build-artifact>.tar.gz
 ```
 
 This extracts `UsersDirectory.app` into the project root.
