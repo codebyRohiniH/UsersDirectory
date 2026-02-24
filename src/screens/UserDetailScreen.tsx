@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Animated, {
-    useSharedValue,
-    useAnimatedStyle,
-    useAnimatedScrollHandler,
-    interpolate,
-    Extrapolation,
-    withSpring,
-} from 'react-native-reanimated';
+  useSharedValue,
+  useAnimatedStyle,
+  useAnimatedScrollHandler,
+  interpolate,
+  Extrapolation,
+  withSpring,
+} from "react-native-reanimated";
 import { fetchUserById } from '../api';
 import {
   Avatar,
@@ -15,7 +15,6 @@ import {
   Text,
   Loading,
   ErrorState,
-  Button,
   InfoRow,
 } from "../components";
 import type { UserDetailScreenProps } from '../navigation';
@@ -44,7 +43,7 @@ export const UserDetailScreen: React.FC<UserDetailScreenProps> = ({ route }) => 
       const data = await fetchUserById(userId);
       setUser(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load user');
+      setError(err instanceof Error ? err.message : "Failed to load user");
     } finally {
       setLoading(false);
     }
@@ -96,11 +95,17 @@ export const UserDetailScreen: React.FC<UserDetailScreenProps> = ({ route }) => 
     return { opacity };
   });
 
-  const handleAvatarPress = useCallback(() => {
-    headerScale.value = withSpring(1.15, { damping: 4, stiffness: 300 }, () => {
-      headerScale.value = withSpring(1);
-    });
-  }, [headerScale]);
+  useEffect(() => {
+    if (user) {
+      headerScale.value = withSpring(
+        1.15,
+        { damping: 4, stiffness: 300 },
+        () => {
+          headerScale.value = withSpring(1);
+        },
+      );
+    }
+  }, [user, headerScale]);
 
   const avatarBounceStyle = useAnimatedStyle(() => ({
     transform: [{ scale: headerScale.value }],
@@ -141,17 +146,6 @@ export const UserDetailScreen: React.FC<UserDetailScreenProps> = ({ route }) => 
           </Text>
         </Animated.View>
       </Animated.View>
-
-      {/* Tap-to-bounce button */}
-      <View style={styles.bounceHint}>
-        <Button
-          testID="bounce-avatar-button"
-          title="✨ Bounce Avatar"
-          variant="ghost"
-          size="sm"
-          onPress={handleAvatarPress}
-        />
-      </View>
 
       {/* Scrollable details */}
       <Animated.ScrollView
