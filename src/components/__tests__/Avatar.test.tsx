@@ -56,8 +56,11 @@ describe('Avatar', () => {
 
       // THEN
       const image = screen.getByTestId('avatar');
-      const style = image.props.style;
-      expect(style).toEqual(
+      const styleArray = image.props.style;
+      const mergedStyle = Array.isArray(styleArray)
+        ? Object.assign({}, ...styleArray)
+        : styleArray;
+      expect(mergedStyle).toEqual(
         expect.objectContaining({ width: dimension, height: dimension }),
       );
 

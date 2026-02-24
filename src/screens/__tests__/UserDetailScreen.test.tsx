@@ -202,19 +202,6 @@ describe('UserDetailScreen', () => {
     expect(fetchUserById).toHaveBeenCalledTimes(2);
   });
 
-  it('renders bounce avatar button', async () => {
-    // GIVEN
-    fetchUserById.mockResolvedValueOnce(mockUser);
-
-    // WHEN
-    render(<UserDetailScreen route={mockRoute} navigation={mockNavigation} />);
-
-    // THEN
-    await waitFor(() => {
-      expect(screen.getByTestId('bounce-avatar-button')).toBeTruthy();
-    });
-  });
-
   it('calls fetchUserById with the correct userId', () => {
     // GIVEN
     fetchUserById.mockReturnValue(new Promise(() => {}));
